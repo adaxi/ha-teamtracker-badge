@@ -1,4 +1,5 @@
 import { html } from "lit";
+import { logoImg } from "./render-helpers.js";
 
 
 export function renderNotFound(c) {
@@ -6,7 +7,7 @@ export function renderNotFound(c) {
     <div class="badge">
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.notFoundLogoBG}" />
+                ${logoImg("badge-logo", c.notFoundLogoBG)}
                 <span class="badge-name">${c.notFoundTerm1}</span>
             </div>
             <div class="badge-center">

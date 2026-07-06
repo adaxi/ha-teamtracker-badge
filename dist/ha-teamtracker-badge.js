@@ -1,9 +1,10 @@
-let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.17.1";
+let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.17.0";
 let $4fcaa3c95ba349ea$export$6df7962ea75d9a39 = "https://a.espncdn.com/i/headshots/golf/players/full/";
 let $4fcaa3c95ba349ea$export$7e154a1de2266268 = "https://a.espncdn.com/i/headshots/mma/players/full/";
 let $4fcaa3c95ba349ea$export$c8a00e33d990d0fa = "https://a.espncdn.com/i/headshots/rpm/players/full/";
 let $4fcaa3c95ba349ea$export$54565cc34e8d24d2 = "https://a.espncdn.com/i/headshots/tennis/players/full/";
 let $4fcaa3c95ba349ea$export$607dc1951b62972e = "https://cdn-icons-png.freepik.com/512/9706/9706583.png";
+let $4fcaa3c95ba349ea$export$8c52d310a5488815 = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NiIgZmlsbD0iIzg4ODg4OCIgZmlsbC1vcGFjaXR5PSIwLjIiLz48dGV4dCB4PSI1MCIgeT0iNjgiIGZvbnQtc2l6ZT0iNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM4ODg4ODgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXdlaWdodD0iYm9sZCI+PzwvdGV4dD48L3N2Zz4=";
 
 
 /**
@@ -2659,16 +2660,30 @@ class $cfd70fadc94c42c5$export$9850010f89e291bb {
 
 
 
+
+
+function $e3fa72ec87c6d57d$export$d1ab0fab55f61018(cls, src, alt) {
+    const primary = src || (0, $4fcaa3c95ba349ea$export$8c52d310a5488815);
+    const fallback = alt && alt !== src ? alt : (0, $4fcaa3c95ba349ea$export$8c52d310a5488815);
+    const onerror = `this.onerror=function(){this.onerror=null;this.src='${(0, $4fcaa3c95ba349ea$export$8c52d310a5488815)}';}; this.src='${fallback}';`;
+    return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`<img class="${cls}" src="${primary}" onerror="${onerror}" />`;
+}
+function $e3fa72ec87c6d57d$export$7b557654ea0a0e48(cls, src, alt) {
+    if (!src) return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)``;
+    const fallback = alt && alt !== src ? alt : "";
+    const onerror = fallback ? `this.onerror=function(){this.onerror=null;this.style.display='none';}; this.src='${fallback}';` : `this.onerror=null; this.style.display='none';`;
+    return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`<img class="${cls}" src="${src}" onerror="${onerror}" />`;
+}
+
+
 function $0fef19109112d570$export$eac7a64041e7dd4f(c) {
     const t = c.teamIdx || 1;
     return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
     <div class="badge">
-        <img class="team-bg" src="${c.logo[t]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[t]}';" />
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("team-bg", c.logo[t], c.logoAlternate[t])}
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.logo[t]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[t]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[t], c.logoAlternate[t])}
                 <span class="badge-name">${c.name[t]}</span>
             </div>
             <div class="badge-center">
@@ -2712,17 +2727,15 @@ function $34e8f4cb5038827c$export$e26cf6a49fd1ec72() {
 
 
 
+
 function $f55026069bb994a8$export$3f4c9efb42c5bfd8(c) {
     return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
     <div class="badge">
-        <img class="team-bg" src="${c.logo[1]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
-        <img class="opponent-bg" src="${c.logo[2]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("team-bg", c.logo[1], c.logoAlternate[1])}
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("opponent-bg", c.logo[2], c.logoAlternate[2])}
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.logo[1]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[1], c.logoAlternate[1])}
                 <span class="badge-name">${c.name[1]}</span>
             </div>
             <div class="badge-center">
@@ -2734,8 +2747,7 @@ function $f55026069bb994a8$export$3f4c9efb42c5bfd8(c) {
             </div>
             <div class="badge-team-right">
                 <span class="badge-name">${c.name[2]}</span>
-                <img class="badge-logo" src="${c.logo[2]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[2], c.logoAlternate[2])}
             </div>
             <div class="badge-clock">${c.playClock}</div>
         </div>
@@ -2745,12 +2757,13 @@ function $f55026069bb994a8$export$3f4c9efb42c5bfd8(c) {
 
 
 
+
 function $03e25072c52748fb$export$cbe2629e62de17f0(c) {
     return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
     <div class="badge">
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.notFoundLogoBG}" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.notFoundLogoBG)}
                 <span class="badge-name">${c.notFoundTerm1}</span>
             </div>
             <div class="badge-center">
@@ -2829,17 +2842,15 @@ class $107bb7d062dde330$export$befdefbdce210f91 {
 
 
 
+
 function $024678abbafb78ef$export$823f4865e91cfbff(c) {
     return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
     <div class="badge">
-        <img class="team-bg" src="${c.logo[1]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
-        <img class="opponent-bg" src="${c.logo[2]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("team-bg", c.logo[1], c.logoAlternate[1])}
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("opponent-bg", c.logo[2], c.logoAlternate[2])}
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.logo[1]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[1], c.logoAlternate[1])}
                 <span class="badge-name">${c.name[1]}</span>
             </div>
             <div class="badge-center">
@@ -2855,8 +2866,7 @@ function $024678abbafb78ef$export$823f4865e91cfbff(c) {
             </div>
             <div class="badge-team-right">
                 <span class="badge-name">${c.name[2]}</span>
-                <img class="badge-logo" src="${c.logo[2]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[2], c.logoAlternate[2])}
             </div>
         </div>
     </div>
@@ -2865,17 +2875,15 @@ function $024678abbafb78ef$export$823f4865e91cfbff(c) {
 
 
 
+
 function $0642b532e06ae26b$export$d6bad15bd473a528(c) {
     return (0, $f58f44579a4747ac$export$c0bb0b647f701bb5)`
     <div class="badge">
-        <img class="team-bg" src="${c.logo[1]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
-        <img class="opponent-bg" src="${c.logo[2]}"
-            onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("team-bg", c.logo[1], c.logoAlternate[1])}
+        ${(0, $e3fa72ec87c6d57d$export$7b557654ea0a0e48)("opponent-bg", c.logo[2], c.logoAlternate[2])}
         <div class="badge-content">
             <div class="badge-team-left">
-                <img class="badge-logo" src="${c.logo[1]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[1]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[1], c.logoAlternate[1])}
                 <span class="badge-name">${c.name[1]}</span>
             </div>
             <div class="badge-center">
@@ -2884,8 +2892,7 @@ function $0642b532e06ae26b$export$d6bad15bd473a528(c) {
             </div>
             <div class="badge-team-right">
                 <span class="badge-name">${c.name[2]}</span>
-                <img class="badge-logo" src="${c.logo[2]}"
-                    onerror="this.onerror=null; this.src='${c.logoAlternate[2]}';" />
+                ${(0, $e3fa72ec87c6d57d$export$d1ab0fab55f61018)("badge-logo", c.logo[2], c.logoAlternate[2])}
             </div>
         </div>
     </div>
