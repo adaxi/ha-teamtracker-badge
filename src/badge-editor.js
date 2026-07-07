@@ -1,4 +1,81 @@
-import { html, LitElement } from "lit";
+import { html, LitElement, nothing } from "lit";
+
+
+const SCHEMA = [
+    {
+        name: "context",
+        type: "expandable",
+        flatten: true,
+        icon: "mdi:shape",
+        schema: [
+            {
+                name: "entity",
+                selector: {
+                    entity: {
+                        filter: { integration: "teamtracker" },
+                    },
+                },
+            },
+        ],
+    },
+    {
+        name: "content",
+        type: "expandable",
+        flatten: true,
+        icon: "mdi:text-short",
+        schema: [
+            {
+                name: "home_side",
+                selector: {
+                    select: {
+                        mode: "dropdown",
+                        options: [
+                            { value: "team", label: "Team on Left" },
+                            { value: "left", label: "Home on Left" },
+                            { value: "right", label: "Home on Right" },
+                        ],
+                    },
+                },
+            },
+        ],
+    },
+    {
+        name: "interactions",
+        type: "expandable",
+        flatten: true,
+        icon: "mdi:gesture-tap",
+        schema: [
+            {
+                name: "tap_action",
+                selector: {
+                    ui_action: {
+                        default_action: "more-info",
+                    },
+                },
+            },
+            {
+                name: "",
+                type: "optional_actions",
+                flatten: true,
+                schema: ["hold_action", "double_tap_action"].map((action) => ({
+                    name: action,
+                    selector: {
+                        ui_action: {
+                            default_action: "none",
+                        },
+                    },
+                })),
+            },
+        ],
+    },
+];
+
+const LABELS = {
+    context: "Context",
+    content: "Content",
+    interactions: "Interactions",
+    home_side: "Home Side",
+};
 
 
 export class TeamTrackerBadgeEditor extends LitElement {
@@ -26,50 +103,32 @@ export class TeamTrackerBadgeEditor extends LitElement {
         this.dispatchEvent(event);
     }
 
+    _computeLabel = (schema) => {
+        if (LABELS[schema.name]) {
+            return LABELS[schema.name];
+        }
+        return this.hass.localize(
+            `ui.panel.lovelace.editor.card.generic.${schema.name}`
+        );
+    };
+
     render() {
         if (!this.hass || !this._config) {
-            return html``;
+            return nothing;
         }
 
         return html`
-        <div>
-            <h4>Team</h4>
-            <ha-selector
-                .value=${this._config.entity ?? ''}
-                .selector=${{
-                    entity: {
-                        filter: { integration: 'teamtracker' }
-                    }
-                }}
+            <ha-form
                 .hass=${this.hass}
-                @value-changed=${(e) => {
-                    const newConfig = { ...this._config, entity: e.detail.value };
-                    this.configChanged(newConfig);
-                    this.requestUpdate();
-                }}
-            ></ha-selector>
-            <h4>Settings</h4>
-            <ha-selector
-                label="Home Side"
-                .value=${this._config.home_side || 'team'}
-                .selector=${{
-                    select: {
-                        mode: 'dropdown',
-                        options: [
-                            { value: 'team',  label: 'Team on Left' },
-                            { value: 'left',  label: 'Home on Left' },
-                            { value: 'right', label: 'Home on Right' },
-                        ]
-                    }
-                }}
-                @value-changed=${(e) => {
-                    const val = e.detail.value === 'team' ? '' : e.detail.value;
-                    const newConfig = { ...this._config, home_side: val };
-                    this.configChanged(newConfig);
-                    this.requestUpdate();
-                }}
-            ></ha-selector>
-        </div>
+                .data=${this._config}
+                .schema=${SCHEMA}
+                .computeLabel=${this._computeLabel}
+                @value-changed=${this._valueChanged}
+            ></ha-form>
         `;
     }
+
+    _valueChanged = (ev) => {
+        this.configChanged(ev.detail.value);
+    };
 }

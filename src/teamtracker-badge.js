@@ -1,3 +1,4 @@
+import { handleAction, hasAction } from "custom-card-helpers";
 import { LitElement, css } from "lit";
 import { Translator } from "./localize/translator.js";
 import { renderBye } from './render-bye.js';
@@ -28,12 +29,6 @@ export class TeamTrackerBadge extends LitElement {
 
     setConfig(config) {
         this._config = config;
-        this._actionConfig = {
-            entity: this._config.entity,
-            dblclick_action: {
-                action: "more-info",
-            },
-        };
     }
 
     getCardSize() {
@@ -108,19 +103,58 @@ export class TeamTrackerBadge extends LitElement {
     }
 
     firstUpdated() {
-        this.shadowRoot.querySelector('.badge').addEventListener('dblclick', () => this._handleDoubleClick());
+        const badge = this.shadowRoot.querySelector('.badge');
+        if (badge) {
+            this._bindActions(badge);
+        }
     }
 
-    _handleDoubleClick() {
-        const event = new Event('hass-action', {
-            bubbles: true,
-            composed: true,
+    // Lightweight gesture recognizer mirroring Home Assistant's action-handler
+    // semantics: hold/double-tap are only detected when configured, and a tap
+    // always resolves (defaulting to more-info via handleAction).
+    _bindActions(el) {
+        el.style.cursor = 'pointer';
+        let holdTimer;
+        let tapTimer;
+        let held = false;
+
+        el.addEventListener('pointerdown', () => {
+            held = false;
+            if (hasAction(this._config.hold_action)) {
+                holdTimer = setTimeout(() => {
+                    held = true;
+                    this._runAction('hold');
+                }, 500);
+            }
         });
-        event.detail = {
-            config: this._actionConfig,
-            action: 'dblclick',
-        };
-        this.dispatchEvent(event);
+        el.addEventListener('pointercancel', () => {
+            clearTimeout(holdTimer);
+            held = false;
+        });
+        el.addEventListener('pointerup', () => {
+            clearTimeout(holdTimer);
+            if (held) {
+                return;
+            }
+            if (!hasAction(this._config.double_tap_action)) {
+                this._runAction('tap');
+                return;
+            }
+            if (tapTimer) {
+                clearTimeout(tapTimer);
+                tapTimer = undefined;
+                this._runAction('double_tap');
+            } else {
+                tapTimer = setTimeout(() => {
+                    tapTimer = undefined;
+                    this._runAction('tap');
+                }, 250);
+            }
+        });
+    }
+
+    _runAction(action) {
+        handleAction(this, this.hass, this._config, action);
     }
 
     static getConfigElement() {
