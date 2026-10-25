@@ -1,5 +1,5 @@
 {
-  "source": "./src/ha-teamtracker-badge.js",
+  "source": "./src/index.js",
   "module": "./dist/ha-teamtracker-badge.js",
   "targets": {
     "module": {
