@@ -1,4 +1,4 @@
-let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.18.0";
+let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.17.2";
 let $4fcaa3c95ba349ea$export$6df7962ea75d9a39 = "https://a.espncdn.com/i/headshots/golf/players/full/";
 let $4fcaa3c95ba349ea$export$7e154a1de2266268 = "https://a.espncdn.com/i/headshots/mma/players/full/";
 let $4fcaa3c95ba349ea$export$c8a00e33d990d0fa = "https://a.espncdn.com/i/headshots/rpm/players/full/";
@@ -3963,6 +3963,18 @@ class $7693d33567d87510$export$292b4a7b3a6b7f8b extends (0, $ab210b2da7b39b9d$ex
     }
     setConfig(config) {
         this._config = config;
+        this._unsubscribeTemplates();
+    }
+    connectedCallback() {
+        super.connectedCallback();
+        this._subscribeTemplates();
+    }
+    disconnectedCallback() {
+        super.disconnectedCallback();
+        this._unsubscribeTemplates();
+    }
+    updated() {
+        this._subscribeTemplates();
     }
     getCardSize() {
         return 1;
@@ -4054,7 +4066,63 @@ class $7693d33567d87510$export$292b4a7b3a6b7f8b extends (0, $ab210b2da7b39b9d$ex
         });
     }
     _runAction(action) {
-        (0, $ee1328194d522913$export$6c6c3f4b7541eaf1)(this, this.hass, this._config, action);
+        const key = `${action}_action`;
+        const config = {
+            ...this._config
+        };
+        if (config[key]) config[key] = this._resolveTemplates(config[key]);
+        (0, $ee1328194d522913$export$6c6c3f4b7541eaf1)(this, this.hass, config, action);
+    }
+    // Action string fields may contain Jinja templates (e.g. url_path:
+    // "{{ state_attr(entity, 'event_url') }}"). They are rendered by Home
+    // Assistant ahead of time through render_template subscriptions, so the
+    // result is available synchronously when the action fires (opening a URL
+    // after an async round-trip would be treated as a popup by browsers).
+    _subscribeTemplates() {
+        if (this._templateUnsubs || !this.isConnected || !this.hass?.connection || !this._config) return;
+        this._templateUnsubs = [];
+        this._templateResults = {};
+        const templates = new Set();
+        [
+            "tap_action",
+            "hold_action",
+            "double_tap_action"
+        ].forEach((key)=>this._collectTemplates(this._config[key], templates));
+        templates.forEach((template)=>{
+            const unsub = this.hass.connection.subscribeMessage((msg)=>{
+                if (msg.result !== undefined) this._templateResults[template] = String(msg.result);
+            }, {
+                type: "render_template",
+                template: template,
+                variables: {
+                    entity: this._config.entity
+                }
+            });
+            unsub.catch((err)=>console.warn("teamtracker-badge: template error", template, err));
+            this._templateUnsubs.push(unsub);
+        });
+    }
+    _unsubscribeTemplates() {
+        if (!this._templateUnsubs) return;
+        this._templateUnsubs.forEach((unsub)=>unsub.then((fn)=>fn()).catch(()=>{}));
+        this._templateUnsubs = undefined;
+        this._templateResults = {};
+    }
+    _isTemplate(value) {
+        return typeof value === 'string' && (value.includes('{{') || value.includes('{%'));
+    }
+    _collectTemplates(value, templates) {
+        if (this._isTemplate(value)) templates.add(value);
+        else if (value && typeof value === 'object') Object.values(value).forEach((v)=>this._collectTemplates(v, templates));
+    }
+    _resolveTemplates(value) {
+        if (this._isTemplate(value)) return this._templateResults?.[value] ?? '';
+        if (Array.isArray(value)) return value.map((v)=>this._resolveTemplates(v));
+        if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value).map(([k, v])=>[
+                k,
+                this._resolveTemplates(v)
+            ]));
+        return value;
     }
     static getConfigElement() {
         return document.createElement("teamtracker-badge-editor");

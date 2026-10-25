@@ -68,6 +68,11 @@ Add a **Manual Badge** to your dashboard and enter the YAML configuration.
 | --- | --- | --- | --- |
 | `entity` | The `ha-teamtracker` sensor entity | — | Yes |
 | `home_side` | Force home team to a specific side | Team on left | No — `left` / `right` |
+| `tap_action` | Action on tap | `more-info` | No |
+| `hold_action` | Action on hold | `none` | No |
+| `double_tap_action` | Action on double tap | `none` | No |
+
+Text fields in actions (such as `url_path` or `navigation_path`) can be [Home Assistant templates](https://www.home-assistant.io/docs/configuration/templating/). They are rendered by Home Assistant and kept up to date as states change. The variable `entity` holds the badge's entity id, so `{{ state_attr(entity, 'event_url') }}` returns the sensor's `event_url` attribute.
 
 ### Minimal Configuration
 
@@ -84,4 +89,14 @@ Where `sensor.my_team` is the sensor name from the [ha-teamtracker](https://gith
 type: custom:teamtracker-badge
 entity: sensor.my_team
 home_side: left
+```
+
+### Open Event Page on Tap
+
+```yaml
+type: custom:teamtracker-badge
+entity: sensor.my_team
+tap_action:
+  action: url
+  url_path: "{{ state_attr(entity, 'event_url') }}"
 ```
