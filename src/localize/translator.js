@@ -10,6 +10,8 @@ import {nl} from "./languages/nl.js"
 import {pt_BR} from "./languages/pt_BR.js"
 import {sk} from "./languages/sk.js"
 import {sk_SK} from "./languages/sk_SK.js"
+import {sr} from "./languages/sr.js"
+import {sr_Latn} from "./languages/sr_Latn.js"
 import {sv} from "./languages/sv.js"
 
 var languages = {
@@ -25,6 +27,8 @@ var languages = {
     pt_BR: pt_BR,
     sk: sk,    
     sk_SK: sk_SK,
+    sr: sr,
+    sr_Latn: sr_Latn,
     sv: sv,
 };
 
