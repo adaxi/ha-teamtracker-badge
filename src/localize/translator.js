@@ -10,6 +10,9 @@ import {nl} from "./languages/nl.js"
 import {pt_BR} from "./languages/pt_BR.js"
 import {sk} from "./languages/sk.js"
 import {sk_SK} from "./languages/sk_SK.js"
+import {sr} from "./languages/sr.js"
+// The path uses the hyphen from the filename (sr-Latn.js), while the variable uses an underscore (sr_Latn)
+import {sr_Latn} from "./languages/sr-Latn.js"
 import {sv} from "./languages/sv.js"
 
 var languages = {
@@ -25,6 +28,8 @@ var languages = {
     pt_BR: pt_BR,
     sk: sk,    
     sk_SK: sk_SK,
+    sr: sr,
+    sr_Latn: sr_Latn,
     sv: sv,
 };
 
@@ -44,7 +49,8 @@ export class Translator {
         }
         catch (e) {
             try {
-                translated = key.split('.').reduce(function (o, i) { return o[i]; }, languages[lang].substring(0,2));
+                // FIXED: Extract the 2-letter substring from the 'lang' string variable, not the undefined object key
+                translated = key.split('.').reduce(function (o, i) { return o[i]; }, languages[lang.substring(0,2)]);
             }
             catch (e) {
                 try {
