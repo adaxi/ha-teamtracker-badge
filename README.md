@@ -28,31 +28,32 @@ This project was based on the [ha-teamtracker-card](https://github.com/vasqued2/
 
 ---
 
-## HACS Installation
+## Marketplace Installation
 
-[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=adaxi&repository=ha-teamtracker-badge&category=frontend)
+[![Open your Home Assistant instance and open this repository in the Marketplace.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=adaxi&repository=ha-teamtracker-badge&category=frontend)
 
 _OR_ manually:
 
-1. Open the HACS section of Home Assistant.
-2. Click the **"+ EXPLORE & DOWNLOAD REPOSITORIES"** button.
-3. Search for **"Team Tracker Badge"**.
-4. Select it from the list and click **Download**.
-5. Reload when prompted.
+1. Go to **Settings** > **Marketplace**.
+2. Find **Team Tracker Badge** and open it.
+3. Select **Install**.
+4. Reload your browser.
 
-HACS will automatically add the following resource:
+On your first visit, you must select **I understand the risks and agree** before you can install anything.
+
+The Marketplace automatically adds the following resource:
 ```yaml
-url: /hacsfiles/ha-teamtracker-badge/ha-teamtracker-badge.js
+url: /local/community/ha-teamtracker-badge/ha-teamtracker-badge.js
 type: module
 ```
 
 ## Manual Installation
 
 1. Download [ha-teamtracker-badge.js](https://github.com/adaxi/ha-teamtracker-badge/blob/main/dist/ha-teamtracker-badge.js)
-2. Copy it to `www/community/ha-teamtracker-badge/`
+2. Copy it to `www/community/ha-teamtracker-badge/` in your configuration folder. If the `www` folder did not exist yet, restart Home Assistant.
 3. Add the following to your resources:
 ```yaml
-url: /hacsfiles/ha-teamtracker-badge/ha-teamtracker-badge.js
+url: /local/community/ha-teamtracker-badge/ha-teamtracker-badge.js
 type: module
 ```
 
