@@ -1,4 +1,4 @@
-let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.18.0";
+let $4fcaa3c95ba349ea$export$a4ad2735b021c132 = "v0.17.2";
 let $4fcaa3c95ba349ea$export$6df7962ea75d9a39 = "https://a.espncdn.com/i/headshots/golf/players/full/";
 let $4fcaa3c95ba349ea$export$7e154a1de2266268 = "https://a.espncdn.com/i/headshots/mma/players/full/";
 let $4fcaa3c95ba349ea$export$c8a00e33d990d0fa = "https://a.espncdn.com/i/headshots/rpm/players/full/";
@@ -3321,6 +3321,308 @@ const $125926858f90b59c$export$b2bcf639de11a4af = {
 };
 
 
+const $2332d2018895c7a2$export$187592e8a03966af = {
+    "common": {
+        "api_error": "\u0413\u0440\u0435\u0448\u043A\u0430 \u0410\u041F\u0418-\u0458\u0430",
+        "field_not_set": "\u041A\u0432\u0430\u043B\u0438\u0444\u0438\u043A\u0430\u0446\u0438\u0458\u0435 \u043D\u0438\u0441\u0443 \u0437\u0430\u0432\u0440\u0448\u0435\u043D\u0435",
+        "no_upcoming_games": "\u041D\u0435\u043C\u0430 \u043F\u0440\u0435\u0434\u0441\u0442\u043E\u0458\u0435\u045B\u0438\u0445 \u0443\u0442\u0430\u043A\u043C\u0438\u0446\u0430 \u0434\u043E %s",
+        "finalTerm": "%s - \u041A\u0440\u0430\u0458",
+        "byeTerm": "\u0421\u043B\u043E\u0431\u043E\u0434\u0430\u043D",
+        "tourney2": "\u0424\u0438\u043D\u0430\u043B\u0435",
+        "tourney4": "\u041F\u043E\u043B\u0443\u0444\u0438\u043D\u0430\u043B\u0435",
+        "tourney8": "\u0427\u0435\u0442\u0432\u0440\u0442\u0444\u0438\u043D\u0430\u043B\u0435",
+        "tourney16": "\u041E\u0441\u043C\u0438\u043D\u0430 \u0444\u0438\u043D\u0430\u043B\u0430",
+        "tourney32": "\u0428\u0435\u0441\u043D\u0430\u0435\u0441\u0442\u0438\u043D\u0430 \u0444\u0438\u043D\u0430\u043B\u0430",
+        "tourney64": "32-\u0438\u043D\u0430 \u0444\u0438\u043D\u0430\u043B\u0430",
+        "tourney128": "\u0420\u0430\u043D\u0435 \u0440\u0443\u043D\u0434\u0435",
+        "tourney256": "\u0420\u0430\u043D\u0435 \u0440\u0443\u043D\u0434\u0435",
+        "today": "\u0414\u0430\u043D\u0430\u0441",
+        "tomorrow": "\u0421\u0443\u0442\u0440\u0430"
+    },
+    "australian-football": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "baseball": {
+        "startTerm": "\u041F\u0440\u0432\u043E \u0431\u0430\u0446\u0430\u045A\u0435",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "\u041B\u043E\u043F\u0442\u0435 %s",
+        "gameStat2": "\u0421\u0442\u0440\u0430\u0458\u043A\u043E\u0432\u0438 %s",
+        "gameStat3": "%s \u0410\u0443\u0442(\u0430)",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "basketball": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "cricket": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "football": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "golf": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A \u0440\u0443\u043D\u0434\u0435",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0423\u0434\u0430\u0440\u0446\u0438 (\u041A\u0440\u043E\u0437)",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "hockey": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A \u0443\u0442\u0430\u043A\u043C\u0438\u0446\u0435",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0428\u0443\u0442e\u0432\u0438 \u0443 \u0433\u043E\u043B",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "mma": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "racing": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u041A\u0440\u0443\u0433\u043E\u0432\u0438",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "soccer": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0428\u0443\u0442\u0435\u0432\u0438 (\u0423 \u043E\u043A\u0432\u0438\u0440 \u0433\u043E\u043B\u0430)",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "tennis": {
+        "startTerm": "\u041F\u0440\u0432\u0438 \u0441\u0435\u0440\u0432\u0438\u0441",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "%s",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "volleyball": {
+        "startTerm": "\u041F\u0440\u0432\u0438 \u0441\u0435\u0440\u0432\u0438\u0441",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "%s \u0420\u0435\u0437\u0443\u043B\u0442\u0430\u0442",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "default": {
+        "startTerm": "\u041F\u043E\u0447\u0435\u0442\u0430\u043A",
+        "overUnder": "\u0423/\u0418: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0412\u0435\u0440\u043E\u0432\u0430\u0442\u043D\u043E\u045B\u0430 \u043F\u043E\u0431\u0435\u0434\u0435",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    }
+};
+
+
+const $caa643efa4dcb54a$export$9f99d5c886bf0f20 = {
+    "common": {
+        "api_error": "Gre\u0161ka API-ja",
+        "field_not_set": "Kvalifikacije nisu zavr\u0161ene",
+        "no_upcoming_games": "Nema predstoje\u0107ih utakmica do %s",
+        "finalTerm": "%s - Kraj",
+        "byeTerm": "Slobodan",
+        "tourney2": "Finale",
+        "tourney4": "Polufinale",
+        "tourney8": "\u010Cetvrtfinale",
+        "tourney16": "Osmina finala",
+        "tourney32": "\u0160esnaestina finala",
+        "tourney64": "32-ina finala",
+        "tourney128": "Rane runde",
+        "tourney256": "Rane runde",
+        "today": "Danas",
+        "tomorrow": "Sutra"
+    },
+    "australian-football": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "baseball": {
+        "startTerm": "Prvo bacanje",
+        "overUnder": "U/I: %s",
+        "gameStat1": "Lopte %s",
+        "gameStat2": "Strajkovi %s",
+        "gameStat3": "%s Aut(a)",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "basketball": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "cricket": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "football": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "golf": {
+        "startTerm": "Po\u010Detak runde",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Udarci (Kroz)",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "hockey": {
+        "startTerm": "Po\u010Detak utakmice",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0160utevi u gol",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "mma": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    },
+    "racing": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Krugovi",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "soccer": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "\u0160utevi (U okvir gola)",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "tennis": {
+        "startTerm": "Prvi servis",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "%s",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "volleyball": {
+        "startTerm": "Prvi servis",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "%s Rezultat",
+        "teamBarLabel": "%s",
+        "oppoBarLabel": "%s"
+    },
+    "default": {
+        "startTerm": "Po\u010Detak",
+        "overUnder": "U/I: %s",
+        "gameStat1": "%s",
+        "gameStat2": "%s",
+        "gameStat3": "",
+        "gameBar": "Verovatno\u0107a pobede",
+        "teamBarLabel": "%s%",
+        "oppoBarLabel": "%s%"
+    }
+};
+
+
 const $f594c62d0c6e32a5$export$65540e5f7f6e7dce = {
     "common": {
         "api_error": "API Error",
@@ -3482,37 +3784,34 @@ var $cfd70fadc94c42c5$var$languages = {
     pt_BR: (0, $60a4d35e5022a9df$export$9dc8766c8c230075),
     sk: (0, $06041e2b1c26c877$export$d608fa5b5bfd2021),
     sk_SK: (0, $125926858f90b59c$export$b2bcf639de11a4af),
+    sr: (0, $2332d2018895c7a2$export$187592e8a03966af),
+    sr_Latn: (0, $caa643efa4dcb54a$export$9f99d5c886bf0f20),
     sv: (0, $f594c62d0c6e32a5$export$65540e5f7f6e7dce)
 };
 class $cfd70fadc94c42c5$export$9850010f89e291bb {
     constructor(lang = "en"){
-        this.lang = lang.replace(/['"]+/g, '').replace('-', '_');
+        this.lang = lang.replace(/['"]+/g, '').replace(/-/g, '_');
     }
     translate(key, search, replace) {
-        var lang = this.lang;
         var translated;
         search = search || '';
         replace = replace || '';
-        try {
-            translated = key.split('.').reduce(function(o, i) {
-                return o[i];
-            }, $cfd70fadc94c42c5$var$languages[lang]);
-        } catch (e) {
-            try {
-                translated = key.split('.').reduce(function(o, i) {
-                    return o[i];
-                }, $cfd70fadc94c42c5$var$languages[lang].substring(0, 2));
-            } catch (e) {
-                try {
-                    translated = key.split('.').reduce(function(o, i) {
-                        return o[i];
-                    }, $cfd70fadc94c42c5$var$languages['en']);
-                } catch (e) {
-                    translated = '{' + key + '}';
-                }
+        // Try the full tag, then shorter ones (sr_Latn_RS, sr_Latn, sr), then English
+        var parts = this.lang.split('_');
+        var tags = parts.map(function(_, i) {
+            return parts.slice(0, parts.length - i).join('_');
+        });
+        tags.push('en');
+        for (var tag of tags){
+            var value = key.split('.').reduce(function(o, i) {
+                return o?.[i];
+            }, $cfd70fadc94c42c5$var$languages[tag]);
+            if (typeof value === 'string' || value instanceof String) {
+                translated = value;
+                break;
             }
         }
-        if (translated === undefined || !(typeof translated === 'string') && !(translated instanceof String)) translated = '{' + key + '}';
+        if (translated === undefined) translated = '{' + key + '}';
         if (search !== '' && replace !== '') translated = translated.replace(search, replace);
         return translated;
     }

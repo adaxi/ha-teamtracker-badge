@@ -11,8 +11,7 @@ import {pt_BR} from "./languages/pt_BR.js"
 import {sk} from "./languages/sk.js"
 import {sk_SK} from "./languages/sk_SK.js"
 import {sr} from "./languages/sr.js"
-// The path uses the hyphen from the filename (sr-Latn.js), while the variable uses an underscore (sr_Latn)
-import {sr_Latn} from "./languages/sr-Latn.js"
+import {sr_Latn} from "./languages/sr_Latn.js"
 import {sv} from "./languages/sv.js"
 
 var languages = {
@@ -35,33 +34,27 @@ var languages = {
 
 export class Translator {
     constructor(lang = "en") {
-        this.lang = lang.replace(/['"]+/g, '').replace('-', '_');
+        this.lang = lang.replace(/['"]+/g, '').replace(/-/g, '_');
     }
 
     translate(key, search, replace) {
-        var lang = this.lang;
         var translated;
         search = search || '';
         replace = replace || '';
 
-        try {
-            translated = key.split('.').reduce(function (o, i) { return o[i]; }, languages[lang]);
-        }
-        catch (e) {
-            try {
-                // FIXED: Extract the 2-letter substring from the 'lang' string variable, not the undefined object key
-                translated = key.split('.').reduce(function (o, i) { return o[i]; }, languages[lang.substring(0,2)]);
-            }
-            catch (e) {
-                try {
-                    translated = key.split('.').reduce(function (o, i) { return o[i]; }, languages['en']);
-                }
-                catch (e) {
-                    translated = '{' + key + '}';
-                }
+        // Try the full tag, then shorter ones (sr_Latn_RS, sr_Latn, sr), then English
+        var parts = this.lang.split('_');
+        var tags = parts.map(function (_, i) { return parts.slice(0, parts.length - i).join('_'); });
+        tags.push('en');
+
+        for (var tag of tags) {
+            var value = key.split('.').reduce(function (o, i) { return o?.[i]; }, languages[tag]);
+            if (typeof value === 'string' || value instanceof String) {
+                translated = value;
+                break;
             }
         }
-        if ((translated === undefined) || (!(typeof translated === 'string') && !(translated instanceof String))) {
+        if (translated === undefined) {
             translated = '{' + key + '}';
         }
         if (search !== '' && replace !== '') {
